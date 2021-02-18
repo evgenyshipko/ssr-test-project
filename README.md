@@ -1,10 +1,8 @@
 
-**React/Typescript project boilerplate**
+**State managers comparison**
 
-*Webpack configuration:*
-1. typescript-loader - for transpile tsx files to ts, ts to js and js code from ES6/7/8 to ES5
-2. mini-css-extract-plugin - extracts CSS into separate files. It creates a CSS file per JS file which contains CSS.
-3. css-loader - interprets @import and url() like import/require() and will resolve them.
-4. html-webpack-plugin - generate html using template
-5. clean-webpack-plugin - clean dist folder after each build
-6. resolve : {alias ...} - allows absolute paths in imports
+In this sandbox-project I use different state managers to solve two tasks: manage access to counter number and toggle notification-component.
+*State-manage packages*:
+1. [Redux](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
+2. [Mobx](https://mobx.js.org/react-integration.html)
+3. [Kea](https://kea.js.org/docs/guide/concepts)
