@@ -1,9 +1,12 @@
 import { kea } from 'kea';
 import { INotification, Nullable } from '@src/stores/redux/store/types';
+import { notificationLogicType } from '@src/stores/kea/logic/notificationType';
 
-export const notificationLogic = kea({
+type NotificationType = Nullable<INotification>;
+
+export const notificationLogic = kea<notificationLogicType<NotificationType>>({
     actions: {
-        showNotification: (data: Nullable<INotification>) => ({
+        showNotification: (data: NotificationType) => ({
             data,
         }),
         hideNotification: true,
@@ -19,16 +22,15 @@ export const notificationLogic = kea({
         data: [
             null,
             {
-                showNotification: (
-                    _state: boolean,
-                    { data }: { data: Nullable<INotification> }
-                ) => data,
+                // @ts-ignore
+                showNotification: ({ data }: { data: NotificationType }) =>
+                    data,
                 hideNotification: () => null,
             },
         ],
     },
     thunks: ({ actions, _dispatch, _getState }: any) => ({
-        toggleNotification: async (data: Nullable<INotification>) => {
+        toggleNotification: async (data: NotificationType) => {
             actions.showNotification(data);
             setTimeout(
                 () => {

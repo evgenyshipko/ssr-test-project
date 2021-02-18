@@ -9,6 +9,7 @@ import { notificationLogic } from '@src/stores/kea/logic/notification';
 import { INotification } from '@src/stores/redux/store/types';
 
 const KeaPage = () => {
+    // @ts-ignore
     const { toggleNotification } = useActions(notificationLogic);
 
     const notificationData: INotification = {
