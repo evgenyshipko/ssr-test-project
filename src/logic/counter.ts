@@ -1,5 +1,5 @@
 import { kea } from 'kea';
-import { counterLogicType } from '@src/stores/kea/logic/counterType';
+import { counterLogicType } from '@src/logic/counterType';
 
 export const counterLogic = kea<counterLogicType>({
     actions: {

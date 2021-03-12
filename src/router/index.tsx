@@ -1,23 +1,18 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import ReduxPage from '@src/stores/redux';
-import { MainPage } from '@src/MainPage';
-import KeaPage from '@src/stores/kea';
-import { MobxPage } from '@src/stores/mobx';
+import { Route, Switch } from 'react-router-dom';
+import { NotificationPage } from '@src/pages/NotificationPage';
+import { CounterPage } from '@src/pages/CounterPage';
+import { Header } from '@components/Header';
 
 const NavigationRouter = () => {
     return (
-        <Router>
+        <>
+            <Header />
             <Switch>
-                <Route exact path="/" component={MainPage} />
-
-                <Route path="/redux" component={ReduxPage} />
-
-                <Route path="/kea" component={KeaPage} />
-
-                <Route path="/mobx" component={MobxPage} />
+                <Route exact path="/" component={NotificationPage} />
+                <Route path="/counter" component={CounterPage} />
             </Switch>
-        </Router>
+        </>
     );
 };
 

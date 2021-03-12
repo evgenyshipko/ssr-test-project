@@ -1,14 +1,14 @@
 import { kea } from 'kea';
-import { INotification, Nullable } from '@src/stores/redux/store/types';
-import { notificationLogicType } from '@src/stores/kea/logic/notificationType';
+import { INotification, Nullable } from '@src/types';
+import { notificationLogicType } from '@src/logic/notificationType';
 
 type NotificationType = Nullable<INotification>;
 
 export const notificationLogic = kea<notificationLogicType<NotificationType>>({
     actions: {
-        showNotification: (data: NotificationType) => ({
-            data,
-        }),
+        showNotification: (data: NotificationType) => {
+            return data
+        },
         hideNotification: true,
     },
     reducers: {
@@ -23,8 +23,9 @@ export const notificationLogic = kea<notificationLogicType<NotificationType>>({
             null,
             {
                 // @ts-ignore
-                showNotification: ({ data }: { data: NotificationType }) =>
-                    data,
+                showNotification: (_state, data: NotificationType) => {
+                    return data
+                },
                 hideNotification: () => null,
             },
         ],

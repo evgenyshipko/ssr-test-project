@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useValues } from 'kea';
-import { notificationLogic } from '@src/stores/kea/logic/notification';
+import { notificationLogic } from '@src/logic/notification';
 
 const Notification = () => {
     const { disabled, data } = useValues(notificationLogic);
 
     useEffect(() => {
-        console.log('render Notification');
+        console.log('render Notification', data);
     }, [disabled, data]);
 
     return (
