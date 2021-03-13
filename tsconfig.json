@@ -1,25 +1,25 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2017"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
     "target": "es5",
     "jsx": "react",
+    "baseUrl": "./",
     "importHelpers": true,
     "noUnusedLocals": true,
-    "esModuleInterop": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "declaration": false,
-    "sourceMap": false,
-    "baseUrl": "./",
-    "outDir": "./dist",
     "paths": {
       "@src/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@components": ["./src/components/index.ts"]
+      "@components/*": ["./src/components/*"]
     },
     "typeRoots": ["src/types/**/*.d.ts", "node_modules/@types"]
   },

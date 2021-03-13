@@ -1,15 +1,17 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import NavigationRouter from '@src/router';
-import store, { history } from '@src/store'
+import { Route, Switch } from 'react-router-dom';
+import { NotificationPage } from '@src/pages/NotificationPage';
+import { CounterPage } from '@src/pages/CounterPage';
+import { Header } from '@components/Header';
 
-export const App = () => (
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <NavigationRouter />
-        </ConnectedRouter>
-    </Provider>
-)
-
-
+export const App = () => {
+    return (
+        <>
+            <Header />
+            <Switch>
+                <Route exact path="/" component={NotificationPage} />
+                <Route path="/counter" component={CounterPage} />
+            </Switch>
+        </>
+    );
+};

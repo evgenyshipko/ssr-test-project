@@ -13,6 +13,7 @@ export const CounterPage = () => {
 
     return (
         <div className='counter-page'>
+            <div>privet</div>
             <div>count: {counter}</div>
             <button onClick={increase}>increase</button>
             <button onClick={decrease}>decrease</button>

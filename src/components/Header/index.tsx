@@ -1,10 +1,13 @@
 import React from 'react';
-import { history } from '@src/store'
-import './style.css'
+import './style.css';
+import { useHistory } from 'react-router';
 
-export const Header = () => (
-    <div className='header'>
-        <button onClick={() => history.push('/counter')}>Counter</button>
-        <button onClick={() => history.push('/')}>Notification</button>
-    </div>
-)
+export const Header = () => {
+    const history = useHistory();
+    return (
+        <div className="header">
+            <button onClick={() => history.push('/counter')}>Counter</button>
+            <button onClick={() => history.push('/')}>Notification</button>
+        </div>
+    );
+};
