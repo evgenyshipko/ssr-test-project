@@ -1,17 +1,27 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { NotificationPage } from '@src/pages/NotificationPage';
-import { CounterPage } from '@src/pages/CounterPage';
 import { Header } from '@components/Header';
+import { routes } from '@src/routes';
+import { hot } from 'react-hot-loader/root';
 
-export const App = () => {
+const App = () => {
     return (
         <>
             <Header />
             <Switch>
-                <Route exact path="/" component={NotificationPage} />
-                <Route path="/counter" component={CounterPage} />
+                {routes.map((data, index) => (
+                    <Route
+                        key={index}
+                        exact={data.exact}
+                        path={data.path}
+                        component={data.component}
+                    />
+                ))}
             </Switch>
         </>
     );
 };
+
+const Component = hot(App);
+
+export { Component as App };

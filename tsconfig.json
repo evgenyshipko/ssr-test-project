@@ -19,9 +19,10 @@
     "declaration": false,
     "paths": {
       "@src/*": ["./src/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@images/*": ["./static/img/*"]
     },
-    "typeRoots": ["src/types/**/*.d.ts", "node_modules/@types"]
+    "typeRoots": ["src/types/*.d.ts", "node_modules/@types"]
   },
   "include": [
     "src",

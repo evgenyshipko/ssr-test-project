@@ -22,12 +22,13 @@ const config: Configuration = {
         publicPath: '/static/',
     },
     resolve: {
-        alias:{
+        alias: {
             '@src': path.resolve(__dirname, '../src/'),
             '@components': path.resolve(__dirname, '../src/components'),
+            '@images': path.resolve(__dirname, '../static/img'),
         },
         modules: ['src', 'node_modules'],
-        extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx']
+        extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
     },
 
     devtool: 'source-map',

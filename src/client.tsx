@@ -8,16 +8,10 @@ import { Provider } from 'react-redux';
 import 'babel-polyfill';
 
 const initialState = window.__INITIAL_STATE__;
-console.log('window.__INITIAL_STATE__', initialState);
 
 const { store, history } = configureStore(initialState);
 
-declare global {
-    interface Window {
-        __INITIAL_STATE__: any;
-        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
-    }
-}
+console.log('client state', store.getState());
 
 ReactDOM.hydrate(
     <Provider store={store}>

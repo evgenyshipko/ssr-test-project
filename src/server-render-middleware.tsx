@@ -4,34 +4,67 @@ import { Request, Response } from 'express';
 import { App } from './App';
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { StaticRouter } from 'react-router-dom';
+import { matchPath, StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { configureStore, getInitialState } from '@src/store';
+import { routes } from '@src/routes';
 
-const serverMiddleware = (req: Request, res: Response) => {
+import url from 'url';
+
+export const serverMiddleware = (req: Request, res: Response) => {
     const location = req.url;
     const context: StaticRouterContext = {};
     const { store } = configureStore(getInitialState(location), location);
 
-    const jsx = (
-        <ReduxProvider store={store}>
-            <StaticRouter context={context} location={location}>
-                <App />
-            </StaticRouter>
-        </ReduxProvider>
-    );
-    const reactHtml = renderToString(jsx);
-    const keaState = store.getState();
+    const renderApp = () => {
+        const jsx = (
+            <ReduxProvider store={store}>
+                <StaticRouter context={context} location={location}>
+                    <App />
+                </StaticRouter>
+            </ReduxProvider>
+        );
+        const reactHtml = renderToString(jsx);
+        const keaState = store.getState();
 
-    if (context.url) {
-        res.redirect(context.url);
-        return;
-    }
+        if (context.url) {
+            res.redirect(context.url);
+            return;
+        }
 
-    res.status(context.statusCode || 200).send(getHtml(reactHtml, keaState));
+        res.status(context.statusCode || 200).send(
+            getHtml(reactHtml, keaState)
+        );
+    };
+
+    const dataRequirements: (Promise<void> | void)[] = [];
+
+    routes.some((route) => {
+        const { fetchData: fetchMethod } = route;
+
+        const match = matchPath(url.parse(location).pathname, route);
+
+        if (match && fetchMethod) {
+            dataRequirements.push(fetchMethod());
+        }
+
+        if (match) {
+            console.log('fetchMethod', fetchMethod?.toString());
+            console.log('URL', url.parse(location).pathname);
+            console.log('route.path', route.path);
+        }
+
+        return Boolean(match);
+    });
+
+    console.log('dataRequirements', dataRequirements);
+
+    return Promise.all(dataRequirements)
+        .then(() => renderApp())
+        .catch((err) => {
+            throw err;
+        });
 };
-
-export default serverMiddleware;
 
 function getHtml(reactHtml: string, reduxState = {}) {
     return `

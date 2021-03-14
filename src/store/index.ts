@@ -1,11 +1,7 @@
 import { getContext, resetContext } from 'kea';
 import thunkPlugin from 'kea-thunk';
-import {
-    connectRouter,
-    routerMiddleware,
-    RouterState,
-} from 'connected-react-router';
-import { Reducer, compose } from 'redux';
+import { connectRouter, RouterState } from 'connected-react-router';
+import { Reducer } from 'redux';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
 export const isServer = !(
@@ -13,14 +9,6 @@ export const isServer = !(
     window.document &&
     window.document.createElement
 );
-
-function getComposeEnhancers() {
-    if (process.env.NODE_ENV !== 'production' && !isServer) {
-        return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    }
-
-    return compose;
-}
 
 export const getInitialState = (pathname: string = '/'): any => {
     return {
@@ -32,19 +20,19 @@ export const getInitialState = (pathname: string = '/'): any => {
 };
 
 export function configureStore(initialState: any, url = '/') {
+    console.log('initialState', initialState);
+
     const history = isServer
         ? createMemoryHistory({ initialEntries: [url] })
         : createBrowserHistory();
 
     resetContext({
         createStore: {
-            preloadedState: initialState,
             reducers: {
                 router: connectRouter(history) as Reducer,
             },
-            middleware: [routerMiddleware(history)],
-            compose: getComposeEnhancers(),
         },
+        defaults: initialState,
         plugins: [thunkPlugin],
     });
 

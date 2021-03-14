@@ -1,8 +1,13 @@
-
 export interface INotification {
-    text: string
-    type: string,
-    duration: number,
+    text: string;
+    type: string;
+    duration: number;
 }
 
-export type Nullable<T> = null | T
+export type Nullable<T> = null | T;
+
+declare global {
+    interface Window {
+        __INITIAL_STATE__: any;
+    }
+}
