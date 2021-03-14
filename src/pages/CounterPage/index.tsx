@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useActions, useValues } from 'kea';
 import { counterLogic } from '@src/logic/counter';
-import './style.css'
+import './style.css';
 
 export const CounterPage = () => {
     const { increase, decrease, reload, setCounter } = useActions(counterLogic);
@@ -12,8 +12,7 @@ export const CounterPage = () => {
     }, [counter]);
 
     return (
-        <div className='counter-page'>
-            <div>privet</div>
+        <div className="counter-page">
             <div>count: {counter}</div>
             <button onClick={increase}>increase</button>
             <button onClick={decrease}>decrease</button>
