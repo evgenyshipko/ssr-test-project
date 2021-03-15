@@ -7,6 +7,8 @@ import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
 
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
+
 const config: Configuration = {
     name: 'server',
     target: 'node',
@@ -22,13 +24,9 @@ const config: Configuration = {
         publicPath: '/static/',
     },
     resolve: {
-        alias: {
-            '@src': path.resolve(__dirname, '../src/'),
-            '@components': path.resolve(__dirname, '../src/components'),
-            '@images': path.resolve(__dirname, '../static/img'),
-        },
         modules: ['src', 'node_modules'],
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+        plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
 
     devtool: 'source-map',

@@ -3,6 +3,7 @@ import path from 'path';
 import { Configuration, Plugin, Entry } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 
 import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
 import fileLoader from './loaders/file';
@@ -26,13 +27,8 @@ const config: Configuration = {
     },
     resolve: {
         modules: ['src', 'node_modules'],
-        alias: {
-            'react-dom': '@hot-loader/react-dom',
-            '@src': path.resolve(__dirname, '../src/'),
-            '@components': path.resolve(__dirname, '../src/components'),
-            '@images': path.resolve(__dirname, '../static/img'),
-        },
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+        plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' }),
