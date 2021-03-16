@@ -13,7 +13,7 @@ export const CounterPage = () => {
 
     return (
         <div className="counter-page">
-            <div>count: {counter}</div>
+            <div>count: {counter} ddаd</div>
             <button onClick={increase}>increase</button>
             <button onClick={decrease}>decrease</button>
             <button onClick={reload}>reload</button>
