@@ -1,11 +1,6 @@
 import path from 'path';
 // @ts-ignore
-import {
-    Configuration,
-    Plugin,
-    Entry,
-    HotModuleReplacementPlugin,
-} from 'webpack';
+import webpack, { Configuration, Plugin, Entry } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
@@ -18,7 +13,7 @@ import jsLoader from './loaders/js';
 const config: Configuration = {
     entry: ([
         IS_DEV && 'react-hot-loader/patch',
-        IS_DEV && 'webpack-hot-middleware/client',
+        IS_DEV && 'webpack-hot-middleware/client?path=/__webpack_hmr',
         IS_DEV && 'css-hot-loader/hotModuleReplacement',
         path.join(SRC_DIR, 'client'),
     ].filter(Boolean) as unknown) as Entry,
@@ -39,7 +34,7 @@ const config: Configuration = {
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' }),
         !IS_DEV && new CompressionPlugin(),
-        IS_DEV && new HotModuleReplacementPlugin(),
+        IS_DEV && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean) as Plugin[],
 
     devtool: 'source-map',
