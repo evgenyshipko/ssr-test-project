@@ -8,9 +8,10 @@ export const getHmrMiddlewares = () => {
     const compiler = webpack({ ...clientConfig, mode: 'development' });
 
     return [
+        hotMiddleware(compiler),
         devMiddleware(compiler, {
-            publicPath: clientConfig.output!.publicPath! as string,
+            serverSideRender: true,
+            writeToDisk: true,
         }),
-        hotMiddleware(compiler, { path: `/__webpack_hmr` }),
     ];
 };

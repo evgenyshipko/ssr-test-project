@@ -73,7 +73,10 @@ function getHtml(reactHtml: string, reduxState = {}) {
     <body>
         <div id="root">${reactHtml}</div>
         <script>
-            window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
+            window.__INITIAL_STATE__ = ${JSON.stringify(reduxState).replace(
+                /</g,
+                '\\u003c'
+            )}
         </script>
         <script src="/main.js"></script>
     </body>
