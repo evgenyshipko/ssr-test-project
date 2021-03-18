@@ -11,7 +11,6 @@ export const getHmrMiddlewares = () => {
         hotMiddleware(compiler),
         devMiddleware(compiler, {
             serverSideRender: true,
-            writeToDisk: true,
         }),
     ];
 };
