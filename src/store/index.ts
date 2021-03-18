@@ -20,8 +20,6 @@ export const getInitialState = (pathname: string = '/'): any => {
 };
 
 export function configureStore(initialState: any, url = '/') {
-    console.log('initialState', initialState);
-
     const history = isServer
         ? createMemoryHistory({ initialEntries: [url] })
         : createBrowserHistory();

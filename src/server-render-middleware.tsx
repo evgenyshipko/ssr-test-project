@@ -48,16 +48,8 @@ export const serverMiddleware = (req: Request, res: Response) => {
             dataRequirements.push(fetchMethod());
         }
 
-        if (match) {
-            console.log('fetchMethod', fetchMethod?.toString());
-            console.log('URL', url.parse(location).pathname);
-            console.log('route.path', route.path);
-        }
-
         return Boolean(match);
     });
-
-    console.log('dataRequirements', dataRequirements);
 
     return Promise.all(dataRequirements)
         .then(() => renderApp())
@@ -81,7 +73,10 @@ function getHtml(reactHtml: string, reduxState = {}) {
     <body>
         <div id="root">${reactHtml}</div>
         <script>
-            window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
+            window.__INITIAL_STATE__ = ${JSON.stringify(reduxState).replace(
+                /</g,
+                '\\u003c'
+            )}
         </script>
         <script src="/main.js"></script>
     </body>
