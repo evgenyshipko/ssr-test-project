@@ -1,10 +1,10 @@
-##Server side rednering test project
+## Server side rednering test project
 
 This project was made according to the Alexandr Morgunov
 [ssr-tutorial](https://amorgunov.com/posts/2020-12-08-server-side-rendering-in-react/)
 ([github](https://github.com/noveogroup-amorgunov/react-ssr-tutorial/)).
 
-####Stack:
+#### Stack:
 1. Basics: React/Typescript
 2. State management: [kea](https://kea.js.org/) (high-order redux wrapper)
 3. Server: express
