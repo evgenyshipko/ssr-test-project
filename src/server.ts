@@ -8,9 +8,9 @@ import { IS_DEV } from '../webpack/env';
 
 const app = express();
 
-app.use(compression())
-    .use(express.static(path.resolve(__dirname, '../dist')))
-    .use(express.static(path.resolve(__dirname, '../static')));
+app.use(compression()).use(
+    express.static(path.resolve(__dirname, '../static'))
+);
 
 if (IS_DEV) {
     app.use(...getHmrMiddlewares());
