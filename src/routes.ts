@@ -5,6 +5,7 @@ import { CounterPage } from '@src/pages/CounterPage';
 import { ImagePage } from '@src/pages/ImagePage';
 import { CoursePage } from '@src/pages/CoursePage';
 import { currencyLogic } from '@src/logic/currency';
+import { UsersPage } from '@src/pages/UsersPage';
 
 type RouteData = {
     title: string;
@@ -45,6 +46,12 @@ export const routes: RouteData[] = [
         path: '/course',
         component: CoursePage,
         fetchData: getCourseFetchData,
+        exact: true,
+    },
+    {
+        title: 'Users',
+        path: '/users',
+        component: UsersPage,
         exact: true,
     },
 ];

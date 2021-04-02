@@ -1,7 +1,7 @@
 import path from 'path';
-// @ts-ignore
 import {
     Configuration,
+    // @ts-ignore
     Plugin,
     Entry,
     HotModuleReplacementPlugin,
@@ -10,7 +10,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 
-import { IS_DEV, DIST_DIR, SRC_DIR } from './env';
+import { IS_DEV, DIST_DIR, SRC_DIR, IS_PROD } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
@@ -38,7 +38,7 @@ const config: Configuration = {
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: '[name].css' }),
-        !IS_DEV && new CompressionPlugin(),
+        IS_PROD && new CompressionPlugin(),
         IS_DEV && new HotModuleReplacementPlugin(),
     ].filter(Boolean) as Plugin[],
 

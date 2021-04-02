@@ -1,13 +1,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Request, Response } from 'express';
-import { App } from './App';
+import { App } from '../../src/App';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import { matchPath, StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
-import { configureStore, getInitialState } from '@src/store';
-import { routes } from '@src/routes';
+import { configureStore, getInitialState } from '../../src/store';
+import { routes } from '../../src/routes';
 
 import url from 'url';
 

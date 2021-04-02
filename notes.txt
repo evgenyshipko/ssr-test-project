@@ -1,0 +1,8 @@
+1. Подконнектиться к базе с моего терминала
+psql postgres://tester:tester@localhost:5436/test-db
+2. Открыть терминал контейнера
+docker exec -t -i container_name /bin/bash
+3. Открыть базу данных в терминале контейнера
+psql -U user_name db_name
+4. Показать логи постгреса
+docker-compose logs -f postgres

@@ -11,3 +11,12 @@ declare global {
         __INITIAL_STATE__: any;
     }
 }
+
+export type UserAttributes = {
+    first_name: string;
+    last_name: string;
+    birthday?: string;
+    email?: string;
+    phone?: string;
+    DepartmentId?: number;
+};

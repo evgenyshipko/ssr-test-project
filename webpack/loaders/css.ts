@@ -1,12 +1,12 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const { IS_DEV } = require('../env');
+const { IS_PROD } = require('../env');
 
 export default {
     client: {
         test: /\.css$/,
         use: [
-            IS_DEV && 'css-hot-loader',
+            !IS_PROD && 'css-hot-loader',
             MiniCssExtractPlugin.loader,
             'css-loader',
         ].filter(Boolean),

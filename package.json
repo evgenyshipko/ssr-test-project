@@ -4,8 +4,10 @@
   "description": "Boilerplate for creation React/Typescript applications",
   "main": "index.js",
   "scripts": {
+    "start:webpack-watch": "webpack --mode=development --watch",
     "start:webpack": "webpack --mode=development",
-    "start:server": "nodemon index.js --watch src/server.ts",
+    "start:server": "nodemon index.js --watch dist/server.js",
+    "start:api": "NODE_ENV=development-api npm-run-all --print-label --parallel start:server start:webpack-watch",
     "start": "NODE_ENV=development npm-run-all --print-label --parallel start:server start:webpack",
     "build": "NODE_ENV=production NODE_PATH=. npm run clean && webpack --mode production"
   },
@@ -80,9 +82,12 @@
     "axios": "^0.21.1",
     "compression": "^1.7.4",
     "connected-react-router": "^6.9.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "kea": "2.3.2",
     "kea-thunk": "1.0.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-redux": "7.2.2",
@@ -91,7 +96,10 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
+    "reflect-metadata": "^0.1.13",
     "reselect": "4.0.0",
+    "sequelize": "^6.6.2",
+    "sequelize-typescript": "^2.1.0",
     "url-loader": "^4.1.1"
   }
 }

@@ -1,8 +1,7 @@
-import path from 'path';
 import { Configuration } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 
-import { DIST_DIR, SRC_DIR } from './env';
+import { DIST_DIR } from './env';
 import fileLoader from './loaders/file';
 import cssLoader from './loaders/css';
 import jsLoader from './loaders/js';
@@ -13,7 +12,7 @@ const config: Configuration = {
     name: 'server',
     target: 'node',
     node: { __dirname: false },
-    entry: path.join(SRC_DIR, 'server'),
+    entry: 'server/server',
     module: {
         rules: [fileLoader.server, cssLoader.server, jsLoader.server],
     },
